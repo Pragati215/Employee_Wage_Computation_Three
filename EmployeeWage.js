@@ -5,22 +5,21 @@ console.log('welcome to Employee Wage Computation')
          const FULL_TIME_HOURS = 8;
          const WAGE_PER_HOUR = 20;
        
-         let empHrs = 0;
-            empCheck = Math.floor(Math.random() * 10) % 3;
-       
+         function getWorkingHours(empCheck) {
          switch (empCheck) {
                  case IS_FULL_TIME:
-                 empHrs = FULL_TIME_HOURS;
                  console.log("Employee is Present");
-                 break;
-       
+                 return FULL_TIME_HOURS;
                  case IS_PART_TIME:
-                 empHrs = PART_TIME_HOURS;
                  console.log("Employee is Present");
-                 break;
+                 return PART_TIME_HOURS;
                  default:console.log("Employee is Abscent");
-                  empHrs = 0;
+                  return 0;
               }
-               let empWage = empHrs * WAGE_PER_HOUR;
-               console.log("emp Wage: " + empWage);
-
+            }
+              let empHrs = 0;
+              empCheck = Math.floor(Math.random() * 10) % 3;
+              empHrs = getWorkingHours(empCheck);
+              let empWage = empHrs * WAGE_PER_HOUR;
+              console.log("emp Wage: " + empWage);
+      
