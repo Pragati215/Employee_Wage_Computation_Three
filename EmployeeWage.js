@@ -8,6 +8,7 @@ console.log('welcome to Employee Wage Computation')
          const MAX_HRS_IN_MONTH = 160;
          
          let empDailyWageArr = new Array();
+         let empDailyWageMap = new Map();
          let totalEmpHrs = 0;
          let totalWorkingDays = 0;
          let totalEmpWage = 0;
@@ -37,9 +38,11 @@ console.log('welcome to Employee Wage Computation')
                 let empHrs =  getWorkingHours(empCheck);
                 totalEmpHrs += empHrs;
                 empDailyWageArr.push(calcDailyWage(empHrs));
+                empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
            }
        
         let empWage = calcDailyWage(totalEmpHrs);
+        console.log("UC6 - Total Days: " + totalWorkingDays + "Total Hrs: " +totalEmpHrs+ " Emp Wage: " + empWage);
   //UC7A       
         function sum(dailyWage) {
           totalEmpWage +=dailyWage;
@@ -83,7 +86,7 @@ console.log('welcome to Employee Wage Computation')
         function isAnyPartTimeWage(dailyWage) {
             return dailyWage.includes("80");
         }
-        console.log("UC 7E - check If Any Part Time wage :"+ mapDayWithWageArr.some(isAnyPartTimeWage));
+        console.log("UC 7F - check If Any Part Time wage :"+ mapDayWithWageArr.some(isAnyPartTimeWage));
   //UC7G
         function totalDaysWorked(numOfDays, dailyWage) {
               if (dailyWage > 0) return numOfDays+1;
@@ -91,3 +94,10 @@ console.log('welcome to Employee Wage Computation')
         }
         console.log("UC 7G - Number of Days Emp Worked :"+ empDailyWageArr.reduce(totalDaysWorked, 0));
         
+        console.log(empDailyWageMap);
+        
+        function totalWages(totalWage, dailyWage) {
+            return totalWage + dailyWage;
+        }
+        console.log("UC8 - Emp Wage Map totalHrs : " + Array.from(empDailyWageMap.values() ).reduce(totalWages, 0) );
+
